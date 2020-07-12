@@ -186,7 +186,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-07-12 18:04:27 / Modified: 18:24:23" itemprop="dateCreated datePublished" datetime="2020-07-12T18:04:27+08:00">2020-07-12</time>
+              <time title="Created: 2020-07-12 18:04:27 / Modified: 18:25:39" itemprop="dateCreated datePublished" datetime="2020-07-12T18:04:27+08:00">2020-07-12</time>
             </span>
 
           
@@ -204,39 +204,14 @@
 <p>骑士的初始健康点数为一个正整数。如果他的健康点数在某一时刻降至 0 或以下，他会立即死亡。</p>
 <p>有些房间由恶魔守卫，因此骑士在进入这些房间时会失去健康点数（若房间里的值为负整数，则表示骑士将损失健康点数）；其他房间要么是空的（房间里的值为 0），要么包含增加骑士健康点数的魔法球（若房间里的值为正整数，则表示骑士将增加健康点数）。</p>
 <p>为了尽快到达公主，骑士决定每次只向右或向下移动一步。</p>
-<p>编写一个函数来计算确保骑士能够拯救到公主所需的最低初始健康点数。</p>
-<p>例如，考虑到如下布局的地下城，如果骑士遵循最佳路径 右 -&gt; 右 -&gt; 下 -&gt; 下，则骑士的初始健康点数至少为 7。</p>
-<table>
-<thead>
-<tr>
-<th>-2 (K)</th>
-<th>-3</th>
-<th>3</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-5</td>
-<td>-10</td>
-<td>1</td>
-</tr>
-<tr>
-<td>10</td>
-<td>30</td>
-<td>-5 (P)</td>
-</tr>
-</tbody></table>
-<p><strong>说明:</strong></p>
-<ul>
-<li>骑士的健康点数没有上限。</li>
-<li>任何房间都可能对骑士的健康点数造成威胁，也可能增加骑士的健康点数，包括骑士进入的左上角房间以及公主被监禁的右下角房间。</li>
-</ul>
-<p>我们考虑从右下往左上进行动态规划。令 dp[i][j]表示从坐标 (i,j) 到终点所需的最小初始值。换句话说，当我们到达坐标 (i,j) 时，如果此时我们的路径和不小于 dp[i][j]，我们就能到达终点。</p>
-<p>这样一来，我们就无需担心路径和的问题，只需要关注最小初始值。对于 dp[i][j]，我们只要关心 dp[i][j+1] 和 dp[i+1][j] 的最小值 minn。记当前格子的值为 dungeon(i,j)，那么在坐标 (i,j) 的初始值只要达到minn−dungeon(i,j) 即可。同时，初始值还必须大于等于 1。</p>
-<p>最终答案即为 dp[0][0]。</p>
-<p>边界条件为，当 i=n-1或者 j=m-1时，dp[i][j]转移需要用到的 dp[i][j+1] 和 dp[i+1][j] 中有无效值，因此我们给这两个值赋值为 1。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">dungeon</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> calculateMinimumHP = <span class="function"><span class="keyword">function</span>(<span class="params">dungeon</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> m = dungeon.length,</span><br><span class="line">    n = dungeon[<span class="number">0</span>].length,</span><br><span class="line">    max = <span class="built_in">Number</span>.MAX_VALUE;</span><br><span class="line">  	<span class="comment">// need dp[m][n - 1] and dp[m - 1][n]</span></span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(m+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; m+<span class="number">1</span>; i++) &#123;</span><br><span class="line">        dp[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(n+<span class="number">1</span>).fill(max);</span><br><span class="line">    &#125;</span><br><span class="line">    dp[m][n - <span class="number">1</span>] = dp[m - <span class="number">1</span>][n] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">            dp[i][j] = <span class="built_in">Math</span>.max(<span class="number">1</span>, <span class="built_in">Math</span>.min(dp[i+<span class="number">1</span>][j], dp[i][j + <span class="number">1</span>]) - dungeon[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/12/Leetcode-174-%E5%9C%B0%E4%B8%8B%E5%9F%8E%E6%B8%B8%E6%88%8F/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
