@@ -20,20 +20,22 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="我头脑不错，而且毫不松懈，一直努力用功。 因此我将来一定会成为一个伟人吧。 我还在读小学四年级，但已经知道各种知识，知识量不输给大人。毕竟我每天都会好好做笔记，也阅读了很多书籍。我有旺盛的求知欲，既对宇宙有兴趣，也对生物、海洋以及机器人感兴趣。我还喜欢历史，也喜欢阅读伟人的传记。我曾在车库里制造机器人，也曾向“海边的咖啡厅”的山口先生借来天文望远镜进行观测，虽然还没有看过大海，但我正在拟定计划，">
+  <meta name="description" content="一些恶魔抓住了公主（P）并将她关在了地下城的右下角。地下城是由 M x N 个房间组成的二维网格。我们英勇的骑士（K）最初被安置在左上角的房间里，他必须穿过地下城并通过对抗恶魔来拯救公主。 骑士的初始健康点数为一个正整数。如果他的健康点数在某一时刻降至 0 或以下，他会立即死亡。 有些房间由恶魔守卫，因此骑士在进入这些房间时会失去健康点数（若房间里的值为负整数，则表示骑士将损失健康点数）；其他房间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《企鹅公路》读后感">
-<meta property="og:url" content="http://yoursite.com/2020/06/19/%E4%BC%81%E9%B9%85%E5%85%AC%E8%B7%AF%E8%AF%BB%E5%90%8E%E6%84%9F/index.html">
+<meta property="og:title" content="Leetcode-174-地下城游戏">
+<meta property="og:url" content="http://yoursite.com/2020/07/12/Leetcode-174-%E5%9C%B0%E4%B8%8B%E5%9F%8E%E6%B8%B8%E6%88%8F/index.html">
 <meta property="og:site_name" content="Qcloud">
-<meta property="og:description" content="我头脑不错，而且毫不松懈，一直努力用功。 因此我将来一定会成为一个伟人吧。 我还在读小学四年级，但已经知道各种知识，知识量不输给大人。毕竟我每天都会好好做笔记，也阅读了很多书籍。我有旺盛的求知欲，既对宇宙有兴趣，也对生物、海洋以及机器人感兴趣。我还喜欢历史，也喜欢阅读伟人的传记。我曾在车库里制造机器人，也曾向“海边的咖啡厅”的山口先生借来天文望远镜进行观测，虽然还没有看过大海，但我正在拟定计划，">
+<meta property="og:description" content="一些恶魔抓住了公主（P）并将她关在了地下城的右下角。地下城是由 M x N 个房间组成的二维网格。我们英勇的骑士（K）最初被安置在左上角的房间里，他必须穿过地下城并通过对抗恶魔来拯救公主。 骑士的初始健康点数为一个正整数。如果他的健康点数在某一时刻降至 0 或以下，他会立即死亡。 有些房间由恶魔守卫，因此骑士在进入这些房间时会失去健康点数（若房间里的值为负整数，则表示骑士将损失健康点数）；其他房间">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-19T11:40:43.000Z">
-<meta property="article:modified_time" content="2020-06-19T13:29:25.000Z">
+<meta property="article:published_time" content="2020-07-12T10:04:27.000Z">
+<meta property="article:modified_time" content="2020-07-12T10:24:23.694Z">
 <meta property="article:author" content="Qcloud">
-<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/19/%E4%BC%81%E9%B9%85%E5%85%AC%E8%B7%AF%E8%AF%BB%E5%90%8E%E6%84%9F/">
+<link rel="canonical" href="http://yoursite.com/2020/07/12/Leetcode-174-%E5%9C%B0%E4%B8%8B%E5%9F%8E%E6%B8%B8%E6%88%8F/">
 
 
 <script id="page-configurations">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>《企鹅公路》读后感 | Qcloud</title>
+  <title>Leetcode-174-地下城游戏 | Qcloud</title>
   
 
 
@@ -165,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/%E4%BC%81%E9%B9%85%E5%85%AC%E8%B7%AF%E8%AF%BB%E5%90%8E%E6%84%9F/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/Leetcode-174-%E5%9C%B0%E4%B8%8B%E5%9F%8E%E6%B8%B8%E6%88%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/yinzhichi.jpeg">
@@ -178,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《企鹅公路》读后感
+          Leetcode-174-地下城游戏
         </h1>
 
         <div class="post-meta">
@@ -189,7 +191,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-19 19:40:43 / Modified: 21:29:25" itemprop="dateCreated datePublished" datetime="2020-06-19T19:40:43+08:00">2020-06-19</time>
+              <time title="Created: 2020-07-12 18:04:27 / Modified: 18:24:23" itemprop="dateCreated datePublished" datetime="2020-07-12T18:04:27+08:00">2020-07-12</time>
             </span>
 
           
@@ -203,38 +205,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <blockquote>
-<p>我头脑不错，而且毫不松懈，一直努力用功。</p>
-<p>因此我将来一定会成为一个伟人吧。</p>
-<p>我还在读小学四年级，但已经知道各种知识，知识量不输给大人。毕竟我每天都会好好做笔记，也阅读了很多书籍。我有旺盛的求知欲，既对宇宙有兴趣，也对生物、海洋以及机器人感兴趣。我还喜欢历史，也喜欢阅读伟人的传记。我曾在车库里制造机器人，也曾向“海边的咖啡厅”的山口先生借来天文望远镜进行观测，虽然还没有看过大海，但我正在拟定计划，准备最近就去探险。看看实物是很重要的，毕竟百闻不如一见。</p>
-<p>输给别人不丢脸，输给昨天的自己才丢脸。我每天学习和这个世界有关的事情，每天都比昨天的自己更上一层楼 。比如说，我需要花很长时间才能长大成人，今天算了算，再过三百八十八天，我才满二十岁。也就是说，到时我会有三千八百八十八天份的进步。我无法预测到了那天自己会变得多么伟大。太伟大的话会很累。我想大家都会吓一跳吧，或许还会有很多女生向我求婚，可我已经有了结婚对象了，不可能和她们结婚。</p>
-<p>虽然觉得很抱歉，但只有这件事我爱莫能助。</p>
-</blockquote>
-<p>又好久没有写读书笔记了，看着备忘录里那一条长长的待写清单，心中自然而然涌起了一阵惭愧。这种惭愧甚至于让自己止步不前，很难再专心致志看下一本书。</p>
-<a id="more"></a>
+        <p>一些恶魔抓住了公主（P）并将她关在了地下城的右下角。地下城是由 M x N 个房间组成的二维网格。我们英勇的骑士（K）最初被安置在左上角的房间里，他必须穿过地下城并通过对抗恶魔来拯救公主。</p>
+<p>骑士的初始健康点数为一个正整数。如果他的健康点数在某一时刻降至 0 或以下，他会立即死亡。</p>
+<p>有些房间由恶魔守卫，因此骑士在进入这些房间时会失去健康点数（若房间里的值为负整数，则表示骑士将损失健康点数）；其他房间要么是空的（房间里的值为 0），要么包含增加骑士健康点数的魔法球（若房间里的值为正整数，则表示骑士将增加健康点数）。</p>
+<p>为了尽快到达公主，骑士决定每次只向右或向下移动一步。</p>
+<p>编写一个函数来计算确保骑士能够拯救到公主所需的最低初始健康点数。</p>
+<p>例如，考虑到如下布局的地下城，如果骑士遵循最佳路径 右 -&gt; 右 -&gt; 下 -&gt; 下，则骑士的初始健康点数至少为 7。</p>
+<table>
+<thead>
+<tr>
+<th>-2 (K)</th>
+<th>-3</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-5</td>
+<td>-10</td>
+<td>1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>30</td>
+<td>-5 (P)</td>
+</tr>
+</tbody></table>
+<p><strong>说明:</strong></p>
+<ul>
+<li>骑士的健康点数没有上限。</li>
+<li>任何房间都可能对骑士的健康点数造成威胁，也可能增加骑士的健康点数，包括骑士进入的左上角房间以及公主被监禁的右下角房间。</li>
+</ul>
+<p>我们考虑从右下往左上进行动态规划。令 dp[i][j]表示从坐标 (i,j) 到终点所需的最小初始值。换句话说，当我们到达坐标 (i,j) 时，如果此时我们的路径和不小于 dp[i][j]，我们就能到达终点。</p>
+<p>这样一来，我们就无需担心路径和的问题，只需要关注最小初始值。对于 dp[i][j]，我们只要关心 dp[i][j+1] 和 dp[i+1][j] 的最小值 minn。记当前格子的值为 dungeon(i,j)，那么在坐标 (i,j) 的初始值只要达到minn−dungeon(i,j) 即可。同时，初始值还必须大于等于 1。</p>
+<p>最终答案即为 dp[0][0]。</p>
+<p>边界条件为，当 i=n-1或者 j=m-1时，dp[i][j]转移需要用到的 dp[i][j+1] 和 dp[i+1][j] 中有无效值，因此我们给这两个值赋值为 1。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">dungeon</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> calculateMinimumHP = <span class="function"><span class="keyword">function</span>(<span class="params">dungeon</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> m = dungeon.length,</span><br><span class="line">    n = dungeon[<span class="number">0</span>].length,</span><br><span class="line">    max = <span class="built_in">Number</span>.MAX_VALUE;</span><br><span class="line">  	<span class="comment">// need dp[m][n - 1] and dp[m - 1][n]</span></span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(m+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; m+<span class="number">1</span>; i++) &#123;</span><br><span class="line">        dp[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(n+<span class="number">1</span>).fill(max);</span><br><span class="line">    &#125;</span><br><span class="line">    dp[m][n - <span class="number">1</span>] = dp[m - <span class="number">1</span>][n] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">            dp[i][j] = <span class="built_in">Math</span>.max(<span class="number">1</span>, <span class="built_in">Math</span>.min(dp[i+<span class="number">1</span>][j], dp[i][j + <span class="number">1</span>]) - dungeon[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>三年前开始的那个习惯，让自己已经有了点强迫症，看完一本书不写点东西，就感觉自己有一件很重要的事情没有做。</p>
-<p>那就从《企鹅公路》这本书开始吧。</p>
-<p>上面的摘录就是书一开头的段落，算是我看过那么多小说中唯一一本将小时候那种对自己未来充满无限期待的孩子气心态表达得如此出色的书。</p>
-<p>很好奇作者森见登美彦的经历，便去查了下。哦，原来是《有顶天家族》的作者，难怪呢。</p>
-<p>算是一本偏现实的幻想小说，但我更想把它当做是一本童话书，中少皆宜，或许得等到自己老了有新的体会吧，希望自己那个时候不要老古董到不喜欢 fairy tale。</p>
-<p>主角是上文所示的小学生，和搞科研的父亲来到了一个偏僻的小镇，很自然的遇到了一个身为孩子王的死对头，一个对自己有些好感的聪明女孩，以及一个略显懦弱但是和自己志同道合的死党。</p>
-<p>以及，一个神秘的大姐姐。</p>
-<p>故事就这样展开了，没有多少热血的内容，一切都是小孩子的所谓的“探险”，有趣的是主角的父亲在给主角提示解决问题的方法时，简直和数学家波利亚经典著作《怎样解题》中通用解题步骤如出一辙，估计他肯定也看过这本书。</p>
-<p>通篇情绪没有多少大起大落，由于主体大部分是小学生的缘故，所以主角间所讨论的内容没有那么多人情世故，也没有多少世俗的东西。故事的最后甚至聊到了死亡与平行世界的事，认为人死亡的瞬间只是去了另一个世界性。既符合他们的年龄段，然而又很有道理。不愧是聪明的小学生，我直到高中开始才慢慢想过这件事。</p>
-<blockquote>
-<p>滨本同学一挥手，直接赏了铃木一巴掌，如大气球破裂般的声音随即响起。我想铃木之所以没有护住自己，是因为吓傻了。我要是处于相同的立场，也会和他一样呆呆地站在原地吧。旁边那些调查队的人，还有小林和长崎也都下了一跳。她以响彻整座停车场的声音大吼道：“我这辈子都不会原谅你的！”铃木整张脸都扭曲着，似乎随时要哭出来了。</p>
-<p>“怎么了？”铃木低声说道：“怎么了啊？”</p>
-<p>滨本老师追了上去，强行将她拉走。尽管如此，她还是重复喊着；“我不会原谅你的！”</p>
-<p>至今为止的人生中，我还没见过气成那样的女生。</p>
-<p>孩子王为了炫耀向大人出卖了他们共同的秘密，于是一向聪明的女孩子滨本做了一件完全不符合她气质的事，躲开了大人阻止，冲过去给了铃木一耳光。</p>
-</blockquote>
-<p>这样的文字，如果作者没有把自己代入那个年龄段的小孩，是写不出来的。</p>
-<p>作为一本第一人称的书，可以算是非常成功了，自始至终没有一点违和。只是改编的困难程度也相应提高了，所以动画化后被人诟病也很正常了。</p>
-<p>故事的结尾让我想起了《龙族》中绘梨衣死去的那段。只不过前者给人希望，而后者带给人的只有无限的遗憾与悲伤。</p>
-<p>虽然我知道他们是在作弊，但毫无疑问，这种写法很有效果。</p>
-<p>如果不讨厌幻想故事，又比较喜欢日常，这本书应该还不错。</p>
-<p>要是用一种食物来比喻的话，大概算是薄荷糖吧，清新但也有一点涩。</p>
 
     </div>
 
@@ -245,7 +251,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 读书笔记</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+              <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"><i class="fa fa-tag"></i> 动态规划</a>
           </div>
 
         
@@ -253,11 +261,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/06/19/%E4%B8%96%E7%95%8C%E5%B0%BD%E5%A4%B4%E7%9A%84%E5%92%96%E5%95%A1%E9%A6%86%E8%AF%BB%E5%90%8E%E6%84%9F/" rel="next" title="《世界尽头的咖啡馆》读后感">
-      《世界尽头的咖啡馆》读后感 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/11/%E5%89%91%E6%8C%87%20Offer%2014-%20I.%20%E5%89%AA%E7%BB%B3%E5%AD%90/" rel="prev" title="剑指 Offer 14- I. 剪绳子">
+      <i class="fa fa-chevron-left"></i> 剑指 Offer 14- I. 剪绳子
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
