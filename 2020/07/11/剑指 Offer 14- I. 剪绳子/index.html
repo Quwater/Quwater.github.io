@@ -233,7 +233,7 @@
 输出: 36
 解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36</code></pre><p>这是一个很典型的动态规划题型，每一段绳子可以由若干段绳子组成，如果我们得出每一个长度绳子的内部分割最大值，那么答案显而易见。</p>
 <p><strong>整体问题的最优解是依赖子问题的最优解</strong>， 为了避免重复求解子问题，我们可以从下到上的顺序先计算小问题的最优解并存储下来，在以此为基础求解大问题的最优解。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
  * @param {number} n
  * @return {number}
  */</span>
@@ -260,7 +260,7 @@
         arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> max<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> arr<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 

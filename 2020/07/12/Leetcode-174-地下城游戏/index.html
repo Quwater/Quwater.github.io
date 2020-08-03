@@ -261,7 +261,7 @@
 <p>这样一来，我们就无需担心路径和的问题，只需要关注最小初始值。对于 dp[i][j]，我们只要关心 dp[i][j+1] 和 dp[i+1][j] 的最小值 minn。记当前格子的值为 dungeon(i,j)，那么在坐标 (i,j) 的初始值只要达到 minn−dungeon(i,j) 即可。同时，初始值还必须大于等于 1。</p>
 <p>最终答案即为 dp[0][0]。</p>
 <p>边界条件为，当 i=n-1 或者 j=m-1 时，dp[i][j]转移需要用到的 dp[i][j+1] 和 dp[i+1][j] 中有无效值，因此我们给这两个值赋值为 1。</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
  * @param {number[][]} dungeon
  * @return {number}
  */</span>
@@ -284,7 +284,7 @@
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 
