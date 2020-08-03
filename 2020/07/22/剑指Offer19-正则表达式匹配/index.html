@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题目 请实现一个函数用来匹配包含.和*的正则表达式。模式中的字符.表示任意一个字符，而*表示它前面的字符可以出现任意次（含 0 次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”abaca”匹配，但与”aa.a”和”ab*a”均不匹配。  示例 1输入: s &#x3D; &quot;aa&quot; p &#x3D; &quot;a&quot; 输出">
+  <meta name="description" content="题目 请实现一个函数用来匹配包含.和*的正则表达式。模式中的字符.表示任意一个字符，而*表示它前面的字符可以出现任意次（含 0 次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”abaca”匹配，但与”aa.a”和”ab*a”均不匹配。  示例 112345输入:s &#x3D; &quot;aa&quot;p &#x3D; &quot;a&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="剑指Offer19.正则表达式匹配">
 <meta property="og:url" content="http://yoursite.com/2020/07/22/%E5%89%91%E6%8C%87Offer19-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/index.html">
 <meta property="og:site_name" content="Qcloud">
-<meta property="og:description" content="题目 请实现一个函数用来匹配包含.和*的正则表达式。模式中的字符.表示任意一个字符，而*表示它前面的字符可以出现任意次（含 0 次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”abaca”匹配，但与”aa.a”和”ab*a”均不匹配。  示例 1输入: s &#x3D; &quot;aa&quot; p &#x3D; &quot;a&quot; 输出">
+<meta property="og:description" content="题目 请实现一个函数用来匹配包含.和*的正则表达式。模式中的字符.表示任意一个字符，而*表示它前面的字符可以出现任意次（含 0 次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”abaca”匹配，但与”aa.a”和”ab*a”均不匹配。  示例 112345输入:s &#x3D; &quot;aa&quot;p &#x3D; &quot;a&quot;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-22T04:26:00.000Z">
 <meta property="article:modified_time" content="2020-07-22T05:01:07.444Z">
@@ -217,36 +217,17 @@
         <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
 <p>请实现一个函数用来匹配包含<code>.</code>和<code>*</code>的正则表达式。模式中的字符<code>.</code>表示任意一个字符，而<code>*</code>表示它前面的字符可以出现任意次（含 0 次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串”aaa”与模式”a.a”和”ab<em>ac</em>a”匹配，但与”aa.a”和”ab*a”均不匹配。</p>
 </blockquote>
-<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h2><pre><code class="hljs plain">输入:
-s &#x3D; &quot;aa&quot;
-p &#x3D; &quot;a&quot;
-输出: false
-解释: &quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。</code></pre>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s &#x3D; &quot;aa&quot;</span><br><span class="line">p &#x3D; &quot;a&quot;</span><br><span class="line">输出: false</span><br><span class="line">解释: &quot;a&quot; 无法匹配 &quot;aa&quot; 整个字符串。</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 
-<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h2><pre><code class="hljs plain">输入:
-s &#x3D; &quot;aa&quot;
-p &#x3D; &quot;a&quot;
-输出: true
-解释: 因为 &#39;&#39; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &#39;a&#39;。因此，字符串 &quot;aa&quot; 可被视为 &#39;a&#39; 重复了一次。</code></pre>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s &#x3D; &quot;aa&quot;</span><br><span class="line">p &#x3D; &quot;a&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &#39;&#39; 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 &#39;a&#39;。因此，字符串 &quot;aa&quot; 可被视为 &#39;a&#39; 重复了一次。</span><br></pre></td></tr></table></figure>
 
-<h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3"></a>示例 3</h2><pre><code class="hljs plain">输入:
-s &#x3D; &quot;ab&quot;
-p &#x3D; &quot;.*&quot;
-输出: true
-解释: &quot;.*&quot; 表示可匹配零个或多个（&#39;*&#39;）任意字符（&#39;.&#39;）。</code></pre>
+<h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3"></a>示例 3</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s &#x3D; &quot;ab&quot;</span><br><span class="line">p &#x3D; &quot;.*&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: &quot;.*&quot; 表示可匹配零个或多个（&#39;*&#39;）任意字符（&#39;.&#39;）。</span><br></pre></td></tr></table></figure>
 
-<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例 4"></a>示例 4</h2><pre><code class="hljs plain">输入:
-s &#x3D; &quot;aab&quot;
-p &#x3D; &quot;cab&quot;
-输出: true
-解释: 因为 &#39;*&#39; 表示零个或多个，这里 &#39;c&#39; 为 0 个, &#39;a&#39; 被重复一次。因此可以匹配字符串 &quot;aab&quot;。</code></pre>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例 4"></a>示例 4</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s &#x3D; &quot;aab&quot;</span><br><span class="line">p &#x3D; &quot;cab&quot;</span><br><span class="line">输出: true</span><br><span class="line">解释: 因为 &#39;*&#39; 表示零个或多个，这里 &#39;c&#39; 为 0 个, &#39;a&#39; 被重复一次。因此可以匹配字符串 &quot;aab&quot;。</span><br></pre></td></tr></table></figure>
 
-<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例 5"></a>示例 5</h2><pre><code class="hljs plain">输入:
-s &#x3D; &quot;mississippi&quot;
-p &#x3D; &quot;mis*is*p*.&quot;
-输出: false</code></pre>
+<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例 5"></a>示例 5</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">s &#x3D; &quot;mississippi&quot;</span><br><span class="line">p &#x3D; &quot;mis*is*p*.&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><code>s</code> 可能为空，且只包含从 <code>a-z</code> 的小写字母。</li>
@@ -271,45 +252,7 @@ p &#x3D; &quot;mis*is*p*.&quot;
 </ul>
 </li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">s</span></span></span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">p</span></span></span>
-<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;boolean&#125;</span></span></span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-keyword">const</span> isMatch = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">s, p</span>) </span>&#123;
-    <span class="hljs-keyword">if</span> (s == <span class="hljs-literal">null</span> || p == <span class="hljs-literal">null</span>) &#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    &#125;
-    <span class="hljs-keyword">let</span> len1 = s.length,
-        len2 = p.length;
-    <span class="hljs-keyword">let</span> dp = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len1 + <span class="hljs-number">1</span>);
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; dp.length; i++) &#123;
-        dp[i] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(len2 + <span class="hljs-number">1</span>).fill(<span class="hljs-literal">false</span>); <span class="hljs-comment">// 将项默认为false</span>
-    &#125;
-
-    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;
-    <span class="hljs-comment">// 考虑类似示例 4 的输入</span>
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">1</span>; j &lt; len2 + <span class="hljs-number">1</span>; j++) &#123;
-        <span class="hljs-keyword">if</span> (p[j - <span class="hljs-number">1</span>] == <span class="hljs-string">'*'</span>) &#123;
-            dp[<span class="hljs-number">0</span>][j] = dp[<span class="hljs-number">0</span>][j - <span class="hljs-number">2</span>];
-        &#125;
-    &#125;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; len1 + <span class="hljs-number">1</span>; i++) &#123;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">1</span>; j &lt; len2 + <span class="hljs-number">1</span>; j++) &#123;
-            <span class="hljs-keyword">if</span> (s[i - <span class="hljs-number">1</span>] === p[j - <span class="hljs-number">1</span>] || p[j - <span class="hljs-number">1</span>] == <span class="hljs-string">'.'</span>) &#123;
-                dp[i][j] = dp[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>];
-            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (p[j - <span class="hljs-number">1</span>] == <span class="hljs-string">'*'</span>) &#123;
-                <span class="hljs-keyword">if</span> (s[i - <span class="hljs-number">1</span>] === p[j - <span class="hljs-number">2</span>] || p[j - <span class="hljs-number">2</span>] == <span class="hljs-string">'.'</span>) &#123;
-                    <span class="hljs-comment">// *重复 0 次，1 次，和 2 次。</span>
-                    dp[i][j] = dp[i][j - <span class="hljs-number">2</span>] || dp[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">2</span>] || dp[i - <span class="hljs-number">1</span>][j];
-                &#125; <span class="hljs-keyword">else</span> &#123;
-                    dp[i][j] = dp[i][j - <span class="hljs-number">2</span>];
-                &#125;
-            &#125;
-        &#125;
-    &#125;
-    <span class="hljs-keyword">return</span> dp[len1][len2]; <span class="hljs-comment">// len1长度的s串 是否匹配 len2长度的p串</span>
-&#125;;</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">p</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> isMatch = <span class="function"><span class="keyword">function</span> (<span class="params">s, p</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="literal">null</span> || p == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> len1 = s.length,</span><br><span class="line">        len2 = p.length;</span><br><span class="line">    <span class="keyword">let</span> dp = <span class="keyword">new</span> <span class="built_in">Array</span>(len1 + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; dp.length; i++) &#123;</span><br><span class="line">        dp[i] = <span class="keyword">new</span> <span class="built_in">Array</span>(len2 + <span class="number">1</span>).fill(<span class="literal">false</span>); <span class="comment">// 将项默认为false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// 考虑类似示例 4 的输入</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; len2 + <span class="number">1</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p[j - <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = dp[<span class="number">0</span>][j - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len1 + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt; len2 + <span class="number">1</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i - <span class="number">1</span>] === p[j - <span class="number">1</span>] || p[j - <span class="number">1</span>] == <span class="string">'.'</span>) &#123;</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (p[j - <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s[i - <span class="number">1</span>] === p[j - <span class="number">2</span>] || p[j - <span class="number">2</span>] == <span class="string">'.'</span>) &#123;</span><br><span class="line">                    <span class="comment">// *重复 0 次，1 次，和 2 次。</span></span><br><span class="line">                    dp[i][j] = dp[i][j - <span class="number">2</span>] || dp[i - <span class="number">1</span>][j - <span class="number">2</span>] || dp[i - <span class="number">1</span>][j];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = dp[i][j - <span class="number">2</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[len1][len2]; <span class="comment">// len1长度的s串 是否匹配 len2长度的p串</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
