@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题干 输入一个字符串，打印出该字符串中字符的所有排列。 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。  示例输入：s &#x3D; &quot;abc&quot; 输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]限制： 1 &lt;&#x3D; s 的长">
+  <meta name="description" content="题干 输入一个字符串，打印出该字符串中字符的所有排列。 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。  示例输入：s &#x3D; &quot;abc&quot; 输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]  限制： 1 &amp;lt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="剑指Offer38.字符串的排列">
 <meta property="og:url" content="http://yoursite.com/2020/08/03/%E5%89%91%E6%8C%87Offer38-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/index.html">
 <meta property="og:site_name" content="Qcloud">
-<meta property="og:description" content="题干 输入一个字符串，打印出该字符串中字符的所有排列。 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。  示例输入：s &#x3D; &quot;abc&quot; 输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]限制： 1 &lt;&#x3D; s 的长">
+<meta property="og:description" content="题干 输入一个字符串，打印出该字符串中字符的所有排列。 你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。  示例输入：s &#x3D; &quot;abc&quot; 输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]  限制： 1 &amp;lt">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghdfu3ks3wj30n609e3yw.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghde7lb5d7j30v40nd75e.jpg">
@@ -91,8 +91,7 @@
   </style>
 </noscript>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -222,47 +221,51 @@
 <p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
 <p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
 </blockquote>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><pre><code>输入：s = &quot;abc&quot;
-输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]</code></pre><p><strong>限制：</strong></p>
-<pre><code>1 &lt;= s 的长度 &lt;= 8</code></pre><a id="more"></a>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><pre><code class="hljs plain">输入：s &#x3D; &quot;abc&quot;
+输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]</code></pre>
+
+<p><strong>限制：</strong></p>
+<pre><code class="hljs plain">1 &lt;&#x3D; s 的长度 &lt;&#x3D; 8</code></pre>
+
+<a id="more"></a>
 
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>我们求整个字符串的所有排列，可以看成两步，第一步，将第一个字符和后面所有的字符交换，第二步，固定第一个字符，求后面子字符串的所有排列。</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghdfu3ks3wj30n609e3yw.jpg" alt=""></p>
 <p>很显然，使用递归即可。</p>
 <p>当字符串存在重复字符时，排列方案中也存在重复方案。为排除重复方案，需在固定某位字符时，保证 “每种字符只在此位固定一次” ，即遇到重复字符时不交换，直接跳过，很显然此时使用 set 数据类型即可。</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghde7lb5d7j30v40nd75e.jpg" alt=""></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/**
- * @param {string} s
- * @return {string[]}
- */</span>
-<span class="token keyword">let</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-    c <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> permutation <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    c <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">function</span> <span class="token function">dfs</span><span class="token punctuation">(</span>begin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// To the last index, no need to exchange</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>begin <span class="token operator">===</span> c<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">let</span> <span class="token keyword">set</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> begin<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> c<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// Deduplication</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">set</span><span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">continue</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">set</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// Swap the first character with itself and the following characters</span>
-        <span class="token function">swap</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> begin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">dfs</span><span class="token punctuation">(</span>begin <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">swap</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> begin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">function</span> <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">[</span>c<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>c<span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="hljs javascript"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;string&#125;</span> <span class="hljs-variable">s</span></span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return <span class="hljs-type">&#123;string[]&#125;</span></span></span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">let</span> res = [],
+    c = [];
+<span class="hljs-keyword">const</span> permutation = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) </span>&#123;
+    c = s.split(<span class="hljs-string">''</span>);
+    dfs(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">return</span> res;
+&#125;;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dfs</span>(<span class="hljs-params">begin</span>) </span>&#123;
+    <span class="hljs-comment">// To the last index, no need to exchange</span>
+    <span class="hljs-keyword">if</span> (begin === c.length - <span class="hljs-number">1</span>) &#123;
+        res.push(c.join(<span class="hljs-string">''</span>));
+    &#125;
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">set</span> = new Set();
+    for (let i = begin; i &lt; c.length; i++) &#123;
+        <span class="hljs-comment">// Deduplication</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">set</span>.has(c[i])) &#123;
+            <span class="hljs-keyword">continue</span>;
+        &#125;
+        <span class="hljs-keyword">set</span>.add(c[i]);
+        // Swap the first character with itself and the following characters
+        swap(i, begin);
+        dfs(begin + 1);
+        swap(i, begin);
+    &#125;
+&#125;
+function swap(a, b) &#123;
+    [c[a], c[b]] = [c[b], c[a]];
+&#125;</code></pre>
 
     </div>
 
