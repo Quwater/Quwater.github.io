@@ -20,22 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="题干 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。 参考以下这颗二叉搜索树：  12345    5   &#x2F; \  2   6 &#x2F; \1   3  示例 112输入: [1,6,3,2,5]输出: false">
+  <meta name="description" content="给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。  示例123456789101112输入: nums &#x3D; [1,3,-1,-3,5,3,6,7], 和 k &#x3D; 3输出: [3,3,5,5,6,7]解释:  滑动窗口的位置                最大值---------------               -----[1  3  -1]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指Offer33.二叉搜索树的后序遍历序列">
-<meta property="og:url" content="http://yoursite.com/2020/07/29/%E5%89%91%E6%8C%87Offer33-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/index.html">
+<meta property="og:title" content="Leetcode-238-滑动窗口的最大值">
+<meta property="og:url" content="http://yoursite.com/2020/08/21/Leetcode-238-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/index.html">
 <meta property="og:site_name" content="Qcloud">
-<meta property="og:description" content="题干 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。 参考以下这颗二叉搜索树：  12345    5   &#x2F; \  2   6 &#x2F; \1   3  示例 112输入: [1,6,3,2,5]输出: false">
+<meta property="og:description" content="给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。  示例123456789101112输入: nums &#x3D; [1,3,-1,-3,5,3,6,7], 和 k &#x3D; 3输出: [3,3,5,5,6,7]解释:  滑动窗口的位置                最大值---------------               -----[1  3  -1]">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-29T04:15:13.000Z">
-<meta property="article:modified_time" content="2020-07-29T04:22:57.192Z">
+<meta property="article:published_time" content="2020-08-21T12:31:53.000Z">
+<meta property="article:modified_time" content="2020-08-21T12:53:51.185Z">
 <meta property="article:author" content="Qcloud">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="二叉搜索树">
+<meta property="article:tag" content="滑动窗口">
+<meta property="article:tag" content="队列">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/29/%E5%89%91%E6%8C%87Offer33-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/">
+<link rel="canonical" href="http://yoursite.com/2020/08/21/Leetcode-238-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/">
 
 
 <script id="page-configurations">
@@ -48,7 +49,7 @@
   };
 </script>
 
-  <title>剑指Offer33.二叉搜索树的后序遍历序列 | Qcloud</title>
+  <title>Leetcode-238-滑动窗口的最大值 | Qcloud</title>
   
 
 
@@ -176,7 +177,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/%E5%89%91%E6%8C%87Offer33-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/21/Leetcode-238-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/yinzhichi.jpeg">
@@ -189,7 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          剑指Offer33.二叉搜索树的后序遍历序列
+          Leetcode-238-滑动窗口的最大值
         </h1>
 
         <div class="post-meta">
@@ -200,7 +201,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-29 12:15:13 / 修改时间：12:22:57" itemprop="dateCreated datePublished" datetime="2020-07-29T12:15:13+08:00">2020-07-29</time>
+              <time title="创建时间：2020-08-21 20:31:53 / 修改时间：20:53:51" itemprop="dateCreated datePublished" datetime="2020-08-21T20:31:53+08:00">2020-08-21</time>
             </span>
 
           
@@ -221,25 +222,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="题干"><a href="#题干" class="headerlink" title="题干"></a>题干</h1><blockquote>
-<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。</p>
-<p>参考以下这颗二叉搜索树：</p>
+        <blockquote>
+<p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    5</span><br><span class="line">   &#x2F; \</span><br><span class="line">  2   6</span><br><span class="line"> &#x2F; \</span><br><span class="line">1   3</span><br></pre></td></tr></table></figure>
-
-<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,6,3,2,5]</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,3,2,6,5]</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入: nums &#x3D; [1,3,-1,-3,5,3,6,7], 和 k &#x3D; 3</span><br><span class="line">输出: [3,3,5,5,6,7]</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">  滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      7</span><br></pre></td></tr></table></figure>
 
 <p><strong>提示：</strong></p>
-<ol>
-<li><code>数组长度 &lt;= 1000</code></li>
-</ol>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>后序遍历的特点是，根节点在最后一位。且前半部分节点的值都小于根节点的值，后半部分的值都大于根节点的值，只要我们通过遍历数组，找到第一个大于根节点值的节点，则很容易将数组分为两部分，通过递归很容易得出最后结果。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">postorder</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> verifyPostorder = <span class="function"><span class="keyword">function</span>(<span class="params">postorder</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> recur(postorder, <span class="number">0</span>, postorder.length - <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> recur = <span class="function"><span class="keyword">function</span>(<span class="params">postorder, i, j</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= j) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">let</span> p = i;</span><br><span class="line">    <span class="comment">// 找出第一个大于根节点的数</span></span><br><span class="line">    <span class="keyword">while</span> (postorder[p] &lt; postorder[j]) &#123;</span><br><span class="line">        p++;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">let</span> m = p;</span><br><span class="line">    <span class="keyword">while</span> (postorder[p] &gt; postorder[j]) &#123;</span><br><span class="line">        p++;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">// 右半部全部大于根节点则 p === j</span></span><br><span class="line">    <span class="keyword">return</span> p === j &amp;&amp; recur(postorder, i, m - <span class="number">1</span>) &amp;&amp; recur(postorder, m, j - <span class="number">1</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>你可以假设 <em>k</em> 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
+<a id="more"></a>
 
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>第一眼看上去，求每个滑动窗口的最大值，暴力法简单粗暴，很容易编码，时间复杂度大概是 O(n*k)。如果我们稍微处理下，增加一个队列，让队列一直保持递减，最大值永远排在第一个，那么每次求得滑动窗口的最大值的时间复杂度就是 O(1)。</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>我们优化下暴力求解，只有移动的恰好是最大值时，我们才遍历该滑动窗口求得最大值。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> maxSlidingWindow = <span class="function"><span class="keyword">function</span> (<span class="params">nums, k</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> max = <span class="built_in">Math</span>.max(...nums.slice(<span class="number">0</span>, k));</span><br><span class="line">    <span class="keyword">let</span> res = [max];</span><br><span class="line">    <span class="keyword">let</span> l = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> r = k;</span><br><span class="line">    <span class="keyword">while</span> (r &lt;= nums.length - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[l - <span class="number">1</span>] !== max) &#123;</span><br><span class="line">            max = <span class="built_in">Math</span>.max(max, nums[r]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            max = <span class="built_in">Math</span>.max(...nums.slice(l, r + <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        res.push(max);</span><br><span class="line">        l++;</span><br><span class="line">        r++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>我们构建一个队列，来存储所有可能成为最大值的数字。开始遍历整个数组，每次加入队列的数如果比队列最末的数要大，那么队列末尾的数肯定不可能为最大值，删掉即可，直到该数值前的数值比它大为止，这样就可以一直保持最大值在队列最前面。</p>
+<p>然后我们要注意下最大值在滑动窗口移动出去时要去除掉，而判断移除的临界条件，使用最大值所在的下标会很方便计算。所以我们干脆用队列保存最大值下标而不是最大值。</p>
+<p>同时也要考虑，遍历达到窗口长度时，就要每次都添加该窗口的最大值。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">k</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> maxSlidingWindow = <span class="function"><span class="keyword">function</span>(<span class="params">nums, k</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 用来保存可能是滑动窗口最大值的下标</span></span><br><span class="line">    <span class="keyword">const</span> stack = [];</span><br><span class="line">    <span class="keyword">const</span> res = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 最大值的位置要被移除时，删掉</span></span><br><span class="line">        <span class="keyword">if</span> (stack[<span class="number">0</span>] &lt;= i - k) &#123;</span><br><span class="line">            stack.shift();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 小于新加入的值，那么它们都不可能成为新的最大值，全部删掉</span></span><br><span class="line">        <span class="keyword">while</span> (nums[stack[stack.length<span class="number">-1</span>]] &lt;= nums[i]) &#123;</span><br><span class="line">            stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">        <span class="comment">// 达到窗口的长度时，开始添加窗口最大值</span></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) &#123;</span><br><span class="line">            res.push(nums[stack[<span class="number">0</span>]]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -252,7 +253,8 @@
           <div class="post-tags">
               <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
               <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
-              <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" rel="tag"><i class="fa fa-tag"></i> 二叉搜索树</a>
+              <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" rel="tag"><i class="fa fa-tag"></i> 滑动窗口</a>
+              <a href="/tags/%E9%98%9F%E5%88%97/" rel="tag"><i class="fa fa-tag"></i> 队列</a>
           </div>
 
         
@@ -261,13 +263,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/27/leetcode-1524-%E5%92%8C%E4%B8%BA%E5%A5%87%E6%95%B0%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E6%95%B0%E7%9B%AE/" rel="prev" title="leetcode-1524-和为奇数的子数组数目">
-      <i class="fa fa-chevron-left"></i> leetcode-1524-和为奇数的子数组数目
+    <a href="/2020/08/20/%E4%B8%8B%E4%B8%80%E7%AB%99%E7%81%AB%E6%98%9F%E8%AF%BB%E5%90%8E%E6%84%9F/" rel="prev" title="《下一站火星》读后感">
+      <i class="fa fa-chevron-left"></i> 《下一站火星》读后感
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/03/%E5%89%91%E6%8C%87Offer38-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/" rel="next" title="剑指Offer38.字符串的排列">
-      剑指Offer38.字符串的排列 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -326,7 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示例-1"><span class="nav-number">1.1.</span> <span class="nav-text">示例 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例-2"><span class="nav-number">1.2.</span> <span class="nav-text">示例 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">1.3.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.4.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">2.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">2.2.</span> <span class="nav-text">方法二</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
