@@ -2,24 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>Leetcode-97-交错字符串 | Gridea</title>
 <link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1640785627662">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Leetcode-97-交错字符串 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="题干
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。
+
+示例 1
+输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;a..." />
+    <meta name="keywords" content="算法,leetcode,动态规划" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,37 +79,107 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              Leetcode-97-交错字符串
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-07-18
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://quwater.github.io/tag/5UoMMcEOs/" class="post-tag">
+                  # 算法
+                </a>
+              
+                <a href="https://quwater.github.io/tag/L19K0IOvVR/" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://quwater.github.io/tag/JSuC7l4qVo/" class="post-tag">
+                  # 动态规划
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                <h1 id="题干">题干</h1>
+<blockquote>
+<p>给定三个字符串 s1, s2, s3, 验证 s3 是否是由 s1 和 s2 交错组成的。</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<h2 id="示例-1">示例 1</h2>
+<pre><code>输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbcbcac&quot;
+输出: true
+</code></pre>
+<h2 id="示例-2">示例 2</h2>
+<pre><code>输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbbaccc&quot;
+输出: false
+</code></pre>
+<!--more-->
+<h2 id="思路">思路</h2>
+<p>解决这个问题的正确方法是动态规划。 我们假设 f(i,j)表示 s1 的前 i 个字符串和 s2 的前 j 个字符串能否交错组成前(i+j)个 s3。</p>
+<p>则有两种可能：</p>
+<ol>
+<li>s1 的第 i 个字符和 s3 第 i+j 个字符相同，则 f(i,j) = f(i−1, j)</li>
+<li>s2 的第 j 个字符和 s3 第 i+j 个字符相同，则 f(i,j) = f(i, j-1)</li>
+</ol>
+<pre><code class="language-latex">f(i,j)=[f(i−1,j)ands1(i−1)=s3(p)]or[f(i,j−1)ands2(j−1)=s3(p)]
+p = i + j - 1
+f(0,0) = true
+</code></pre>
+<h2 id="实现">实现</h2>
+<pre><code class="language-javascript">/**
+ * @param {string} s1
+ * @param {string} s2
+ * @param {string} s3
+ * @return {boolean}
+ */
+const isInterleave = function (s1, s2, s3) {
+    let n = s1.length,
+        m = s2.length,
+        t = s3.length;
+
+    if (n + m != t) {
+        return false;
+    }
+
+    const f = new Array(n + 1);
+    for (let i = 0; i &lt; f.length; i++) {
+        f[i] = new Array(m + 1);
+    }
+
+    f[0][0] = true;
+    for (let i = 0; i &lt;= n; ++i) {
+        for (let j = 0; j &lt;= m; ++j) {
+            let p = i + j - 1;
+            if (i &gt; 0) {
+                f[i][j] =
+                    f[i][j] ||
+                    (f[i - 1][j] &amp;&amp; s1.charAt(i - 1) == s3.charAt(p));
+            }
+            if (j &gt; 0) {
+                f[i][j] =
+                    f[i][j] ||
+                    (f[i][j - 1] &amp;&amp; s2.charAt(j - 1) == s3.charAt(p));
+            }
+        }
+    }
+
+    return f[n][m];
+};
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E9%A2%98%E5%B9%B2">题干</a>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B-1">示例 1</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B-2">示例 2</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
 </ul>
 </li>
 </ul>
@@ -121,6 +189,15 @@
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://quwater.github.io/post/Leetcode-96-不同的二叉搜索树/">
+              <h3 class="post-title">
+                Leetcode-96-不同的二叉搜索树
+              </h3>
+            </a>
+          </div>
         
 
         

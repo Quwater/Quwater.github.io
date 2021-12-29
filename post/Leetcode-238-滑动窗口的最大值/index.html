@@ -1,0 +1,281 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Leetcode-238-滑动窗口的最大值 | Gridea</title>
+<link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1640785627662">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Leetcode-238-滑动窗口的最大值 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
+
+示例
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7]
+解释:
+
+  滑动窗口的位置    ..." />
+    <meta name="keywords" content="算法,leetcode,滑动窗口,队列" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://quwater.github.io/">
+  <img class="avatar" src="https://quwater.github.io//images/avatar.png?v=1640785627662" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Leetcode-238-滑动窗口的最大值
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-21
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://quwater.github.io/tag/5UoMMcEOs/" class="post-tag">
+                  # 算法
+                </a>
+              
+                <a href="https://quwater.github.io/tag/L19K0IOvVR/" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://quwater.github.io/tag/B6-JtT7i0o/" class="post-tag">
+                  # 滑动窗口
+                </a>
+              
+                <a href="https://quwater.github.io/tag/9HjWBa7alS/" class="post-tag">
+                  # 队列
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <blockquote>
+<p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
+</blockquote>
+<h2 id="示例">示例</h2>
+<pre><code>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7]
+解释:
+
+  滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+</code></pre>
+<p><strong>提示：</strong></p>
+<p>你可以假设 <em>k</em> 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
+<!--more-->
+<h2 id="题解">题解</h2>
+<p>第一眼看上去，求每个滑动窗口的最大值，暴力法简单粗暴，很容易编码，时间复杂度大概是 O(n*k)。如果我们稍微处理下，增加一个队列，让队列一直保持递减，最大值永远排在第一个，那么每次求得滑动窗口的最大值的时间复杂度就是 O(1)。</p>
+<h3 id="方法一">方法一</h3>
+<p>我们优化下暴力求解，只有移动的恰好是最大值时，我们才遍历该滑动窗口求得最大值。</p>
+<p>代码如下：</p>
+<pre><code class="language-javascript">const maxSlidingWindow = function (nums, k) {
+    if (nums.length === 0) {
+        return [];
+    }
+    let max = Math.max(...nums.slice(0, k));
+    let res = [max];
+    let l = 1;
+    let r = k;
+    while (r &lt;= nums.length - 1) {
+        if (nums[l - 1] !== max) {
+            max = Math.max(max, nums[r]);
+        } else {
+            max = Math.max(...nums.slice(l, r + 1));
+        }
+        res.push(max);
+        l++;
+        r++;
+    }
+    return res;
+};
+</code></pre>
+<h3 id="方法二">方法二</h3>
+<p>我们构建一个队列，来存储所有可能成为最大值的数字。开始遍历整个数组，每次加入队列的数如果比队列最末的数要大，那么队列末尾的数肯定不可能为最大值，删掉即可，直到该数值前的数值比它大为止，这样就可以一直保持最大值在队列最前面。</p>
+<p>然后我们要注意下最大值从滑动窗口范围移动出去时要去除掉该最大值，而判断移除的临界条件，使用最大值所在的下标会很方便计算。所以我们干脆用队列保存最大值下标而不是最大值。</p>
+<p>同时也要考虑，遍历达到窗口长度时，就要每次都添加该窗口的最大值。</p>
+<p>代码如下：</p>
+<pre><code class="language-JavaScript">/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+const maxSlidingWindow = function(nums, k) {
+    // 用来保存可能是滑动窗口最大值的下标
+    const stack = [];
+    const res = [];
+
+    for (let i = 0; i &lt; nums.length; i++) {
+        // 最大值的位置要被移除时，删掉
+        if (stack[0] &lt;= i - k) {
+            stack.shift();
+        }
+        // 小于新加入的值，那么它们都不可能成为新的最大值，全部删掉
+        while (nums[stack[stack.length-1]] &lt;= nums[i]) {
+            stack.pop();
+        }
+        stack.push(i);
+        // 达到窗口的长度时，开始添加窗口最大值
+        if (i &gt;= k - 1) {
+            res.push(nums[stack[0]]);
+        }
+    }
+
+    return res;
+};
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%A4%BA%E4%BE%8B">示例</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80">方法一</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C">方法二</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://quwater.github.io/post/下一站火星读后感/">
+              <h3 class="post-title">
+                《下一站火星》读后感
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://quwater.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

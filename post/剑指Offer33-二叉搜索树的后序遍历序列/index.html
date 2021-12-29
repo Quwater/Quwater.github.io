@@ -2,24 +2,25 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>剑指Offer33.二叉搜索树的后序遍历序列 | Gridea</title>
 <link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1640785627662">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="剑指Offer33.二叉搜索树的后序遍历序列 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="题干
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
+参考以下这颗二叉搜索树：
+
+     5
+    / \
+   2   6
+  /..." />
+    <meta name="keywords" content="算法,leetcode,二叉搜索树" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,37 +82,93 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              剑指Offer33.二叉搜索树的后序遍历序列
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-07-29
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://quwater.github.io/tag/5UoMMcEOs/" class="post-tag">
+                  # 算法
+                </a>
+              
+                <a href="https://quwater.github.io/tag/L19K0IOvVR/" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://quwater.github.io/tag/AoQ_3YdpSe/" class="post-tag">
+                  # 二叉搜索树
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                <h1 id="题干">题干</h1>
+<blockquote>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。</p>
+<p>参考以下这颗二叉搜索树：</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<pre><code>     5
+    / \
+   2   6
+  / \
+ 1   3
+</code></pre>
+<h2 id="示例-1">示例 1</h2>
+<pre><code>输入: [1,6,3,2,5]
+输出: false
+</code></pre>
+<!--more-->
+<h2 id="示例-2">示例 2</h2>
+<pre><code>输入: [1,3,2,6,5]
+输出: true
+</code></pre>
+<p><strong>提示：</strong></p>
+<ol>
+<li><code>数组长度 &lt;= 1000</code></li>
+</ol>
+<h2 id="题解">题解</h2>
+<p>后序遍历的特点是，根节点在最后一位。且前半部分节点的值都小于根节点的值，后半部分的值都大于根节点的值，只要我们通过遍历数组，找到第一个大于根节点值的节点，则很容易将数组分为两部分，通过递归很容易得出最后结果。</p>
+<h2 id="代码">代码</h2>
+<pre><code class="language-javascript">/**
+ * @param {number[]} postorder
+ * @return {boolean}
+ */
+const verifyPostorder = function(postorder) {
+    return recur(postorder, 0, postorder.length - 1);
+};
+const recur = function(postorder, i, j) {
+    if (i &gt;= j) {
+        return true;
+    } 
+    let p = i;
+    // 找出第一个大于根节点的数
+    while (postorder[p] &lt; postorder[j]) {
+        p++;
+    } 
+    let m = p;
+    while (postorder[p] &gt; postorder[j]) {
+        p++;
+    } 
+    // 右半部全部大于根节点则 p === j
+    return p === j &amp;&amp; recur(postorder, i, m - 1) &amp;&amp; recur(postorder, m, j - 1);
+};
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E9%A2%98%E5%B9%B2">题干</a>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B-1">示例 1</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B-2">示例 2</a></li>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
 </ul>
 </li>
 </ul>
@@ -121,6 +178,15 @@
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://quwater.github.io/post/leetcode-1524-和为奇数的子数组数目/">
+              <h3 class="post-title">
+                leetcode-1524-和为奇数的子数组数目
+              </h3>
+            </a>
+          </div>
         
 
         

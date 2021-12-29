@@ -2,24 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>创建二维数组时的误区 | Gridea</title>
 <link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1640785627662">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="创建二维数组时的误区 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="在做动态规划类型算法题时，我们总会构建二维数组，但是如果误用了 JavaScript 的一些语法糖，很容易导致意想不到的错误，这里为我自己犯过的错误做一下总结。
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+利用 Array 构建函数，然后 fill 方法内嵌 fill 方法。
+
+c..." />
+    <meta name="keywords" content="JavaScript,语言基础" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,46 +78,79 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              创建二维数组时的误区
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-08-08
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://quwater.github.io/tag/Rq-QrFNrA6/" class="post-tag">
+                  # JavaScript
+                </a>
+              
+                <a href="https://quwater.github.io/tag/jKN-2yTEfp/" class="post-tag">
+                  # 语言基础
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                <p>在做动态规划类型算法题时，我们总会构建二维数组，但是如果误用了 JavaScript 的一些语法糖，很容易导致意想不到的错误，这里为我自己犯过的错误做一下总结。</p>
+<ol>
+<li>利用 Array 构建函数，然后 fill 方法内嵌 fill 方法。</li>
+</ol>
+<pre><code class="language-javascript">const arr = new Array(2).fill(new Array(2).fill(0));
+</code></pre>
+<p>通过查阅 MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fill">相关文档</a>,我们可以找到这行字：</p>
+<blockquote>
+<p>当一个对象被传递给 **<code>fill</code>**方法的时候, 填充数组的是这个对象的引用。</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<!--more-->
+<p>这样会导致我们的填充的所谓二维数组，其中数组中的数组其实全部指向一个，牵一发而动全身。</p>
+<p>按照上面的例子，如果我们修改一下该二维数组中的<code>arr[0][0]</code>:</p>
+<pre><code class="language-javascript">arr[0][0] = 1;
+</code></pre>
+<p>我们如果以为<code>arr</code>现在是<code>[[1, 0], [0, 0]]</code>，那就大错特错了，其实应该是<code>[[1, 0], [1, 0]]</code>。</p>
+<p>因为 <code>arr[0]</code>和<code>arr[1]</code>指向同一个对象，所以改变其中一个，另一个也会一样被改变。</p>
+<ol start="2">
+<li>利用<code>for...of</code>遍历数组给数组每个元素赋值</li>
+</ol>
+<pre><code class="language-javascript">const arr = new Array(2);
+for (let i of arr) {
+    i = new Array(2).fill(0);
+}
+</code></pre>
+<p>乍一看似乎没啥问题，其实这里的 <code>i</code>只是 arr 内部元素的值，将<code>new Array(2).fill(0)</code>赋值给<code>i</code>没有任何意义，我们什么也没改变。</p>
+<p>正确方式应该如下：</p>
+<pre><code class="language-javascript">const arr = new Array(2);
+for (let i = 0; i &lt; arr.length; i++) {
+    arr[i] = new Array(2).fill(0);
+}
+</code></pre>
+<p><code>arr[i]</code>为数组内部相应元素的引用，赋值后可以得到对应的二维数组。</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://quwater.github.io/post/leetcode-337-打家劫舍III/">
+              <h3 class="post-title">
+                leetcode-337-打家劫舍III
+              </h3>
+            </a>
+          </div>
         
 
         

@@ -2,24 +2,18 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>剑指 Offer 14- I. 剪绳子 | Gridea</title>
 <link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1640785627662">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="剑指 Offer 14- I. 剪绳子 | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
     <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n 都是整数，n&gt;1 并且 m&gt;1），每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 k[0]k[1]...*k[m-1] 可能的最大乘积是多少..." />
+    <meta name="keywords" content="算法,leetcode,动态规划" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,46 +75,95 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              剑指 Offer 14- I. 剪绳子
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-07-11
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
+              
+                <a href="https://quwater.github.io/tag/5UoMMcEOs/" class="post-tag">
+                  # 算法
+                </a>
+              
+                <a href="https://quwater.github.io/tag/L19K0IOvVR/" class="post-tag">
+                  # leetcode
+                </a>
+              
+                <a href="https://quwater.github.io/tag/JSuC7l4qVo/" class="post-tag">
+                  # 动态规划
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
                 <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+<p>给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n 都是整数，n&gt;1 并且 m&gt;1），每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 k[0]<em>k[1]</em>...*k[m-1] 可能的最大乘积是多少？例如，当绳子的长度是 8 时，我们把它剪成长度分别为 2、3、3 的三段，此时得到的最大乘积是 18。</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<p>示例 1：</p>
+<pre><code>输入: 2
+输出: 1
+解释: 2 = 1 + 1, 1 × 1 = 1
+</code></pre>
+<!-- more -->
+<p>示例 2：</p>
+<pre><code>输入: 10
+输出: 36
+解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
+</code></pre>
+<p>这是一个很典型的动态规划题型，每一段绳子可以由若干段绳子组成，如果我们得出每一个长度绳子的内部分割最大值，那么答案显而易见。</p>
+<p><strong>整体问题的最优解是依赖子问题的最优解</strong>， 为了避免重复求解子问题，我们可以从下到上的顺序先计算小问题的最优解并存储下来，在以此为基础求解大问题的最优解。</p>
+<pre><code class="language-javascript">/**
+ * @param {number} n
+ * @return {number}
+ */
+const cuttingRope = function (n) {
+    if (n === 2) {
+        return 1;
+    }
+    if (n === 3) {
+        return 2;
+    }
+
+    /* Create a new array to store the maximum value of
+  each length of rope corresponding to the situation */
+    let arr = new Array(n + 1);
+    (arr[0] = 0), (arr[1] = 1), (arr[2] = 2), (arr[3] = 3);
+    for (let i = 4; i &lt;= n; i++) {
+        let max = 0;
+        // Split at least once
+        for (let j = 1; j &lt;= Math.floor(i / 2); j++) {
+            /* Use the maximum value of a small problem to 
+        get the maximum value of a large problem */
+            max = Math.max(max, arr[j] * arr[i - j]);
+        }
+        arr[i] = max;
+    }
+    return arr[n];
+};
+</code></pre>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://quwater.github.io/post/世界尽头的咖啡馆读后感/">
+              <h3 class="post-title">
+                《世界尽头的咖啡馆》读后感
+              </h3>
+            </a>
+          </div>
         
 
         

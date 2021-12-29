@@ -2,11 +2,11 @@
   <head>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Gridea | Gridea</title>
+<title>JavaScript | Gridea</title>
 <link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1640785627662">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Gridea | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="JavaScript | Gridea - Atom Feed" href="https://quwater.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -70,35 +70,44 @@
 
         <div class="current-tag-container">
             <h2 class="title">
-                标签：# Gridea
+                标签：# JavaScript
             </h2> 
         </div>
         <div class="post-container">
   
     <article class="post">
-      <a href="https://quwater.github.io/post/hello-gridea/">
-        <h2 class="post-title">Hello Gridea</h2>
+      <a href="https://quwater.github.io/post/创建二维数组时的误区/">
+        <h2 class="post-title">创建二维数组时的误区</h2>
       </a>
       <div class="post-info">
         <span>
-          2018-12-12
+          2020-08-08
         </span>
         <span>
           2 min read
         </span>
         
-          <a href="https://quwater.github.io/tag/Bb7MLF7mk/" class="post-tag">
-            # Gridea
+          <a href="https://quwater.github.io/tag/Rq-QrFNrA6/" class="post-tag">
+            # JavaScript
+          </a>
+        
+          <a href="https://quwater.github.io/tag/jKN-2yTEfp/" class="post-tag">
+            # 语言基础
           </a>
         
       </div>
       
-        <a href="https://quwater.github.io/post/hello-gridea/" class="post-feature-image" style="background-image: url('https://quwater.github.io//post-images/hello-gridea.png')">
-        </a>
-      
       <div class="post-abstract">
-        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+        <p>在做动态规划类型算法题时，我们总会构建二维数组，但是如果误用了 JavaScript 的一些语法糖，很容易导致意想不到的错误，这里为我自己犯过的错误做一下总结。</p>
+<ol>
+<li>利用 Array 构建函数，然后 fill 方法内嵌 fill 方法。</li>
+</ol>
+<pre><code class="language-javascript">const arr = new Array(2).fill(new Array(2).fill(0));
+</code></pre>
+<p>通过查阅 MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fill">相关文档</a>,我们可以找到这行字：</p>
+<blockquote>
+<p>当一个对象被传递给 **<code>fill</code>**方法的时候, 填充数组的是这个对象的引用。</p>
+</blockquote>
 
       </div>
     </article>
