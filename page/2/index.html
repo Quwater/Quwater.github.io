@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Qcloud</title>
-<link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1646834697594">
+<link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1646835746392">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="Qcloud - Atom Feed" href="https://quwater.github.io//atom.xml">
@@ -18,7 +18,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://quwater.github.io/">
-  <img class="avatar" src="https://quwater.github.io//images/avatar.png?v=1646834697594" alt="">
+  <img class="avatar" src="https://quwater.github.io//images/avatar.png?v=1646835746392" alt="">
   </a>
   <h1 class="site-title">
     Qcloud
@@ -70,6 +70,43 @@
 
     
         <div class="post-container">
+  
+    <article class="post">
+      <a href="https://quwater.github.io/post/创建二维数组时的误区/">
+        <h2 class="post-title">创建二维数组时的误区</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-08-08
+        </span>
+        <span>
+          2 min read
+        </span>
+        
+          <a href="https://quwater.github.io/tag/Rq-QrFNrA6/" class="post-tag">
+            # JavaScript
+          </a>
+        
+          <a href="https://quwater.github.io/tag/jKN-2yTEfp/" class="post-tag">
+            # 语言基础
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        <p>在做动态规划类型算法题时，我们总会构建二维数组，但是如果误用了 JavaScript 的一些语法糖，很容易导致意想不到的错误，这里为我自己犯过的错误做一下总结。</p>
+<ol>
+<li>利用 Array 构建函数，然后 fill 方法内嵌 fill 方法。</li>
+</ol>
+<pre><code class="language-javascript">const arr = new Array(2).fill(new Array(2).fill(0));
+</code></pre>
+<p>通过查阅 MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fill">相关文档</a>,我们可以找到这行字：</p>
+<blockquote>
+<p>当一个对象被传递给 **<code>fill</code>**方法的时候, 填充数组的是这个对象的引用。</p>
+</blockquote>
+
+      </div>
+    </article>
   
     <article class="post">
       <a href="https://quwater.github.io/post/leetcode-337-打家劫舍III/">
@@ -327,54 +364,6 @@ p = &quot;a&quot;
 <h2 id="示例-2">示例 2</h2>
 <pre><code>输入: s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbbaccc&quot;
 输出: false
-</code></pre>
-
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://quwater.github.io/post/Leetcode-96-不同的二叉搜索树/">
-        <h2 class="post-title">Leetcode-96-不同的二叉搜索树</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-07-15
-        </span>
-        <span>
-          1 min read
-        </span>
-        
-          <a href="https://quwater.github.io/tag/5UoMMcEOs/" class="post-tag">
-            # 算法
-          </a>
-        
-          <a href="https://quwater.github.io/tag/L19K0IOvVR/" class="post-tag">
-            # leetcode
-          </a>
-        
-          <a href="https://quwater.github.io/tag/JSuC7l4qVo/" class="post-tag">
-            # 动态规划
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h1 id="题干">题干</h1>
-<blockquote>
-<p>给定一个整数 <em>n</em>，求以 1 ... <em>n</em> 为节点组成的二叉搜索树有多少种</p>
-</blockquote>
-<h2 id="示例">示例</h2>
-<pre><code>输入: 3
-输出: 5
-解释:
-给定 n = 3, 一共有 5 种不同结构的二叉搜索树:
-
-   1         3     3      2      1
-    \       /     /      / \      \
-     3     2     1      1   3      2
-    /     /       \                 \
-   2     1         2                 3
-
 </code></pre>
 
       </div>

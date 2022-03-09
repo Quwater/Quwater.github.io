@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://quwater.github.io/</id>
     <title>Qcloud</title>
-    <updated>2022-03-09T14:05:45.859Z</updated>
+    <updated>2022-03-09T14:22:32.442Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://quwater.github.io/"/>
     <link rel="self" href="https://quwater.github.io/atom.xml"/>
@@ -10,6 +10,53 @@
     <logo>https://quwater.github.io/images/avatar.png</logo>
     <icon>https://quwater.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Qcloud</rights>
+    <entry>
+        <title type="html"><![CDATA[2022年 3 月 9 日学习笔记]]></title>
+        <id>https://quwater.github.io/post/2022-nian-3-yue-9-ri-xue-xi-bi-ji/</id>
+        <link href="https://quwater.github.io/post/2022-nian-3-yue-9-ri-xue-xi-bi-ji/">
+        </link>
+        <updated>2022-03-09T14:06:05.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="vue-route">Vue Route</h1>
+<ul>
+<li>使用<strong>Vue Router</strong>的原因</li>
+<li>如何注册并设置<strong>routes</strong>（path\name\meta\components\children\props）</li>
+<li>active links</li>
+<li>控制 scroll behavior</li>
+<li>router-link</li>
+</ul>
+<h1 id="javascript-高级程序设计"><em>JavaScript 高级程序设计</em></h1>
+<ul>
+<li>理解对象
+<ul>
+<li>对象的属性（数据属性、访问器属性）</li>
+<li>定义属性（<code>Object.defineProperties</code>）</li>
+<li>读取属性</li>
+<li>合并对象（<code>Object.assign</code>）</li>
+<li>属性值简写、可计算属性、简写方法名</li>
+<li>对象解构</li>
+</ul>
+</li>
+<li>创建对象
+<ul>
+<li>工厂模式</li>
+<li>构造函数模式</li>
+<li>原型模式</li>
+<li>对象迭代</li>
+</ul>
+</li>
+<li>继承
+<ul>
+<li>原型链</li>
+<li>盗用构造函数</li>
+<li>组合继承</li>
+<li>原型链继承</li>
+<li>寄生继承</li>
+<li>寄生式组合继承</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[关于 2022 年读书写作的碎碎念]]></title>
         <id>https://quwater.github.io/post/guan-yu-2022-nian-du-shu-xie-zuo-de-sui-sui-nian/</id>
@@ -607,81 +654,6 @@ function dfs(begin) {
 function swap(a, b) {
     [c[a], c[b]] = [c[b], c[a]];
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[剑指Offer33.二叉搜索树的后序遍历序列]]></title>
-        <id>https://quwater.github.io/post/剑指Offer33-二叉搜索树的后序遍历序列/</id>
-        <link href="https://quwater.github.io/post/剑指Offer33-二叉搜索树的后序遍历序列/">
-        </link>
-        <updated>2020-07-29T04:15:13.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="题干">题干</h1>
-<blockquote>
-<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。</p>
-<p>参考以下这颗二叉搜索树：</p>
-</blockquote>
-<pre><code>     5
-    / \
-   2   6
-  / \
- 1   3
-</code></pre>
-<h2 id="示例-1">示例 1</h2>
-<pre><code>输入: [1,6,3,2,5]
-输出: false
-</code></pre>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="题干">题干</h1>
-<blockquote>
-<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。</p>
-<p>参考以下这颗二叉搜索树：</p>
-</blockquote>
-<pre><code>     5
-    / \
-   2   6
-  / \
- 1   3
-</code></pre>
-<h2 id="示例-1">示例 1</h2>
-<pre><code>输入: [1,6,3,2,5]
-输出: false
-</code></pre>
-<!--more-->
-<h2 id="示例-2">示例 2</h2>
-<pre><code>输入: [1,3,2,6,5]
-输出: true
-</code></pre>
-<p><strong>提示：</strong></p>
-<ol>
-<li><code>数组长度 &lt;= 1000</code></li>
-</ol>
-<h2 id="题解">题解</h2>
-<p>后序遍历的特点是，根节点在最后一位。且前半部分节点的值都小于根节点的值，后半部分的值都大于根节点的值，只要我们通过遍历数组，找到第一个大于根节点值的节点，则很容易将数组分为两部分，通过递归很容易得出最后结果。</p>
-<h2 id="代码">代码</h2>
-<pre><code class="language-javascript">/**
- * @param {number[]} postorder
- * @return {boolean}
- */
-const verifyPostorder = function(postorder) {
-    return recur(postorder, 0, postorder.length - 1);
-};
-const recur = function(postorder, i, j) {
-    if (i &gt;= j) {
-        return true;
-    } 
-    let p = i;
-    // 找出第一个大于根节点的数
-    while (postorder[p] &lt; postorder[j]) {
-        p++;
-    } 
-    let m = p;
-    while (postorder[p] &gt; postorder[j]) {
-        p++;
-    } 
-    // 右半部全部大于根节点则 p === j
-    return p === j &amp;&amp; recur(postorder, i, m - 1) &amp;&amp; recur(postorder, m, j - 1);
-};
 </code></pre>
 ]]></content>
     </entry>

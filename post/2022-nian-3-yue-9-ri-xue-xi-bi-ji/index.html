@@ -2,21 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>创建二维数组时的误区 | Qcloud</title>
+<title>2022年 3 月 9 日学习笔记 | Qcloud</title>
 <link rel="shortcut icon" href="https://quwater.github.io//favicon.ico?v=1646835746392">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://quwater.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="创建二维数组时的误区 | Qcloud - Atom Feed" href="https://quwater.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="2022年 3 月 9 日学习笔记 | Qcloud - Atom Feed" href="https://quwater.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="在做动态规划类型算法题时，我们总会构建二维数组，但是如果误用了 JavaScript 的一些语法糖，很容易导致意想不到的错误，这里为我自己犯过的错误做一下总结。
+    <meta name="description" content="Vue Route
 
-利用 Array 构建函数，然后 fill 方法内嵌 fill 方法。
-
-c..." />
-    <meta name="keywords" content="JavaScript,语言基础" />
+使用Vue Router的原因
+如何注册并设置routes（path\name\meta\components\children\props）
+active links
+控制 scroll behavior
+route..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -78,65 +80,67 @@ c..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              创建二维数组时的误区
+              2022年 3 月 9 日学习笔记
             </h2>
             <div class="post-info">
               <span>
-                2020-08-08
+                2022-03-09
               </span>
               <span>
-                2 min read
+                1 min read
               </span>
-              
-                <a href="https://quwater.github.io/tag/Rq-QrFNrA6/" class="post-tag">
-                  # JavaScript
-                </a>
-              
-                <a href="https://quwater.github.io/tag/jKN-2yTEfp/" class="post-tag">
-                  # 语言基础
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>在做动态规划类型算法题时，我们总会构建二维数组，但是如果误用了 JavaScript 的一些语法糖，很容易导致意想不到的错误，这里为我自己犯过的错误做一下总结。</p>
-<ol>
-<li>利用 Array 构建函数，然后 fill 方法内嵌 fill 方法。</li>
-</ol>
-<pre><code class="language-javascript">const arr = new Array(2).fill(new Array(2).fill(0));
-</code></pre>
-<p>通过查阅 MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fill">相关文档</a>,我们可以找到这行字：</p>
-<blockquote>
-<p>当一个对象被传递给 **<code>fill</code>**方法的时候, 填充数组的是这个对象的引用。</p>
-</blockquote>
-<!--more-->
-<p>这样会导致我们的填充的所谓二维数组，其中数组中的数组其实全部指向一个，牵一发而动全身。</p>
-<p>按照上面的例子，如果我们修改一下该二维数组中的<code>arr[0][0]</code>:</p>
-<pre><code class="language-javascript">arr[0][0] = 1;
-</code></pre>
-<p>我们如果以为<code>arr</code>现在是<code>[[1, 0], [0, 0]]</code>，那就大错特错了，其实应该是<code>[[1, 0], [1, 0]]</code>。</p>
-<p>因为 <code>arr[0]</code>和<code>arr[1]</code>指向同一个对象，所以改变其中一个，另一个也会一样被改变。</p>
-<ol start="2">
-<li>利用<code>for...of</code>遍历数组给数组每个元素赋值</li>
-</ol>
-<pre><code class="language-javascript">const arr = new Array(2);
-for (let i of arr) {
-    i = new Array(2).fill(0);
-}
-</code></pre>
-<p>乍一看似乎没啥问题，其实这里的 <code>i</code>只是 arr 内部元素的值，将<code>new Array(2).fill(0)</code>赋值给<code>i</code>没有任何意义，我们什么也没改变。</p>
-<p>正确方式应该如下：</p>
-<pre><code class="language-javascript">const arr = new Array(2);
-for (let i = 0; i &lt; arr.length; i++) {
-    arr[i] = new Array(2).fill(0);
-}
-</code></pre>
-<p><code>arr[i]</code>为数组内部相应元素的引用，赋值后可以得到对应的二维数组。</p>
+                <h1 id="vue-route">Vue Route</h1>
+<ul>
+<li>使用<strong>Vue Router</strong>的原因</li>
+<li>如何注册并设置<strong>routes</strong>（path\name\meta\components\children\props）</li>
+<li>active links</li>
+<li>控制 scroll behavior</li>
+<li>router-link</li>
+</ul>
+<h1 id="javascript-高级程序设计"><em>JavaScript 高级程序设计</em></h1>
+<ul>
+<li>理解对象
+<ul>
+<li>对象的属性（数据属性、访问器属性）</li>
+<li>定义属性（<code>Object.defineProperties</code>）</li>
+<li>读取属性</li>
+<li>合并对象（<code>Object.assign</code>）</li>
+<li>属性值简写、可计算属性、简写方法名</li>
+<li>对象解构</li>
+</ul>
+</li>
+<li>创建对象
+<ul>
+<li>工厂模式</li>
+<li>构造函数模式</li>
+<li>原型模式</li>
+<li>对象迭代</li>
+</ul>
+</li>
+<li>继承
+<ul>
+<li>原型链</li>
+<li>盗用构造函数</li>
+<li>组合继承</li>
+<li>原型链继承</li>
+<li>寄生继承</li>
+<li>寄生式组合继承</li>
+</ul>
+</li>
+</ul>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li><a href="#vue-route">Vue Route</a></li>
+<li><a href="#javascript-%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><em>JavaScript 高级程序设计</em></a></li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -145,9 +149,9 @@ for (let i = 0; i &lt; arr.length; i++) {
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://quwater.github.io/post/leetcode-337-打家劫舍III/">
+            <a href="https://quwater.github.io/post/guan-yu-2022-nian-du-shu-xie-zuo-de-sui-sui-nian/">
               <h3 class="post-title">
-                leetcode-337-打家劫舍III
+                关于 2022 年读书写作的碎碎念
               </h3>
             </a>
           </div>
