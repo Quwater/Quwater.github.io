@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://quwater.github.io/</id>
     <title>Qcloud</title>
-    <updated>2022-03-09T14:25:02.093Z</updated>
+    <updated>2022-03-19T13:01:08.455Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://quwater.github.io/"/>
     <link rel="self" href="https://quwater.github.io/atom.xml"/>
@@ -10,6 +10,24 @@
     <logo>https://quwater.github.io/images/avatar.png</logo>
     <icon>https://quwater.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Qcloud</rights>
+    <entry>
+        <title type="html"><![CDATA[vuex小结]]></title>
+        <id>https://quwater.github.io/post/vuex-xiao-jie/</id>
+        <link href="https://quwater.github.io/post/vuex-xiao-jie/">
+        </link>
+        <updated>2022-03-19T12:50:44.000Z</updated>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://quwater.github.io//post-images/1647694272110.png" alt="" loading="lazy"></figure>
+<h2 id="state">state</h2>
+<p>通过模块（<strong>modules</strong>）和文件夹来分解复杂的 state</p>
+<h2 id="mutation">mutation</h2>
+<p>操纵 state 的函数</p>
+<h2 id="actions">actions</h2>
+<p>封装 mutation</p>
+<h2 id="getters">getters</h2>
+<p>封装 state</p>
+<p>相较于<strong>provide/inject</strong>一把梭，在大项目中要有用非常多。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2022年 3 月 9 日学习笔记]]></title>
         <id>https://quwater.github.io/post/2022-nian-3-yue-9-ri-xue-xi-bi-ji/</id>
@@ -578,80 +596,6 @@ const rob = function(root) {
     // 考虑子节点为空的情况
     return Math.max(f.get(root) || 0, g.get(root) || 0);
 };
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[剑指Offer38.字符串的排列]]></title>
-        <id>https://quwater.github.io/post/剑指Offer38-字符串的排列/</id>
-        <link href="https://quwater.github.io/post/剑指Offer38-字符串的排列/">
-        </link>
-        <updated>2020-08-03T00:43:56.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="题干">题干</h1>
-<blockquote>
-<p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
-<p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
-</blockquote>
-<h2 id="示例">示例</h2>
-<pre><code>输入：s = &quot;abc&quot;
-输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]
-</code></pre>
-<p><strong>限制：</strong></p>
-<pre><code>1 &lt;= s 的长度 &lt;= 8
-</code></pre>
-]]></summary>
-        <content type="html"><![CDATA[<h1 id="题干">题干</h1>
-<blockquote>
-<p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
-<p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
-</blockquote>
-<h2 id="示例">示例</h2>
-<pre><code>输入：s = &quot;abc&quot;
-输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]
-</code></pre>
-<p><strong>限制：</strong></p>
-<pre><code>1 &lt;= s 的长度 &lt;= 8
-</code></pre>
-<!--more-->
-<h2 id="题解">题解</h2>
-<p>我们求整个字符串的所有排列，可以看成两步，第一步，将第一个字符和后面所有的字符交换，第二步，固定第一个字符，求后面子字符串的所有排列。</p>
-<figure data-type="image" tabindex="1"><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghdfu3ks3wj30n609e3yw.jpg" alt="" loading="lazy"></figure>
-<p>很显然，使用递归即可。</p>
-<p>当字符串存在重复字符时，排列方案中也存在重复方案。为排除重复方案，需在固定某位字符时，保证 “每种字符只在此位固定一次” ，即遇到重复字符时不交换，直接跳过，很显然此时使用 set 数据类型即可。</p>
-<figure data-type="image" tabindex="2"><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghde7lb5d7j30v40nd75e.jpg" alt="" loading="lazy"></figure>
-<h2 id="代码">代码</h2>
-<pre><code class="language-javascript">/**
- * @param {string} s
- * @return {string[]}
- */
-let res = [],
-    c = [];
-const permutation = function (s) {
-    c = s.split('');
-    dfs(0);
-    return res;
-};
-function dfs(begin) {
-    // To the last index, no need to exchange
-    if (begin === c.length - 1) {
-        res.push(c.join(''));
-    }
-    let set = new Set();
-    for (let i = begin; i &lt; c.length; i++) {
-        // Deduplication
-        if (set.has(c[i])) {
-            continue;
-        }
-        set.add(c[i]);
-        // Swap the first character with itself and the following characters
-        swap(i, begin);
-        dfs(begin + 1);
-        swap(i, begin);
-    }
-}
-function swap(a, b) {
-    [c[a], c[b]] = [c[b], c[a]];
-}
 </code></pre>
 ]]></content>
     </entry>
